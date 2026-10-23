@@ -1,0 +1,1860 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة أنجزني | شهد الخطيب & شهد مالك - بورتفوليو ووكالة رقمية</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Cairo & Tajawal -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                        tajawal: ['Tajawal', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --accent-primary: #8b5cf6;
+            --accent-secondary: #06b6d4;
+            --accent-glow: rgba(139, 92, 246, 0.35);
+        }
+
+        [data-theme="engezny"] {
+            --accent-primary: #8b5cf6;
+            --accent-secondary: #06b6d4;
+            --accent-glow: rgba(139, 92, 246, 0.35);
+        }
+
+        [data-theme="khatib"] {
+            --accent-primary: #f59e0b;
+            --accent-secondary: #a855f7;
+            --accent-glow: rgba(245, 158, 11, 0.35);
+        }
+
+        [data-theme="malek"] {
+            --accent-primary: #ec4899;
+            --accent-secondary: #14b8a6;
+            --accent-glow: rgba(236, 72, 153, 0.35);
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #070913;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        /* Dynamic Accent Utilities */
+        .theme-gradient-text {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .theme-gradient-bg {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+        }
+
+        .theme-border {
+            border-color: var(--accent-primary);
+        }
+
+        .theme-glow {
+            box-shadow: 0 10px 35px -5px var(--accent-glow);
+        }
+
+        .glass-card {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px -10px var(--accent-glow);
+        }
+
+        /* Animated Background Blobs */
+        .ambient-blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(110px);
+            opacity: 0.22;
+            pointer-events: none;
+            z-index: 0;
+            transition: background 0.8s ease;
+        }
+
+        /* Smartphone 9:16 Mockup */
+        .phone-mockup {
+            aspect-ratio: 9 / 16;
+            border: 6px solid #1e293b;
+            border-radius: 2rem;
+            position: relative;
+            overflow: hidden;
+            background: #0f172a;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.8), 0 15px 30px rgba(0,0,0,0.5);
+        }
+
+        .phone-notch {
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 32%;
+            height: 14px;
+            background: #090d16;
+            border-radius: 999px;
+            z-index: 20;
+        }
+
+        /* Audio Waveform Animation */
+        @keyframes wavePulse {
+            0%, 100% { transform: scaleY(0.3); }
+            50% { transform: scaleY(1); }
+        }
+
+        .wave-bar {
+            transform-origin: bottom;
+            transition: transform 0.2s ease;
+        }
+
+        .playing .wave-bar {
+            animation: wavePulse 0.8s infinite ease-in-out;
+        }
+
+        /* Smooth Fade In */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-up {
+            animation: fadeUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #070913;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-primary);
+        }
+    </style>
+</head>
+<body data-theme="engezny" class="min-h-screen flex flex-col selection:bg-purple-500 selection:text-white">
+
+    <!-- Ambient Dynamic Lighting -->
+    <div id="blob-1" class="ambient-blob w-96 h-96 -top-20 -right-20" style="background: var(--accent-primary);"></div>
+    <div id="blob-2" class="ambient-blob w-[28rem] h-[28rem] bottom-10 -left-24" style="background: var(--accent-secondary);"></div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed bottom-6 left-6 z-50 flex flex-col gap-3 pointer-events-none"></div>
+
+    <!-- Project Details / Video Preview Modal -->
+    <div id="preview-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-md p-4">
+        <div class="glass-card max-w-2xl w-full rounded-3xl overflow-hidden border border-white/15 animate-fade-up">
+            <div class="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-slate-900/70">
+                <div class="flex items-center gap-3">
+                    <span id="modal-badge" class="px-3 py-1 text-xs font-bold rounded-full theme-gradient-bg text-white"></span>
+                    <h3 id="modal-title" class="text-lg font-bold text-white"></h3>
+                </div>
+                <button onclick="closePreviewModal()" class="w-9 h-9 rounded-full bg-white/10 hover:bg-rose-500/20 hover:text-rose-400 flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <div id="modal-body" class="p-6"></div>
+        </div>
+    </div>
+
+    <!-- TOP NAVIGATION & PROFILE SWITCHER -->
+    <header class="sticky top-0 z-40 border-b border-white/10 bg-[#070913]/85 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-wrap items-center justify-between py-3 gap-3">
+                
+                <!-- Brand / Active Profile Identity -->
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-2xl theme-gradient-bg flex items-center justify-center text-white font-black text-xl shadow-lg theme-glow">
+                        <span id="nav-logo-icon"><i class="fa-solid fa-bolt"></i></span>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span id="nav-brand-title" class="font-extrabold text-lg tracking-wide text-white">وكالة أنجزني</span>
+                            <span id="nav-cic-badge" class="hidden sm:inline-block text-[11px] px-2.5 py-0.5 rounded-full bg-white/10 text-slate-300 border border-white/10">
+                                إعلام الجامعة الكندية CIC
+                            </span>
+                        </div>
+                        <p id="nav-brand-subtitle" class="text-xs text-slate-400">منصة البورتفوليو الموحد والخدمات الرقمية</p>
+                    </div>
+                </div>
+
+                <!-- 3-Profile Switcher Pills (Unified Template Controller) -->
+                <div class="order-3 lg:order-2 w-full lg:w-auto flex justify-center">
+                    <div class="inline-flex p-1.5 rounded-2xl bg-slate-900/95 border border-white/10 shadow-inner w-full sm:w-auto justify-between sm:justify-start gap-1">
+                        <button onclick="switchProfile('engezny')" id="tab-engezny" class="profile-tab flex-1 sm:flex-initial px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 theme-gradient-bg text-white shadow-md">
+                            <i class="fa-solid fa-rocket"></i>
+                            <span>براند أنجزني</span>
+                        </button>
+                        <button onclick="switchProfile('khatib')" id="tab-khatib" class="profile-tab flex-1 sm:flex-initial px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 text-slate-300 hover:text-white hover:bg-white/5">
+                            <i class="fa-solid fa-microphone-lines"></i>
+                            <span>شهد الخطيب</span>
+                        </button>
+                        <button onclick="switchProfile('malek')" id="tab-malek" class="profile-tab flex-1 sm:flex-initial px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 text-slate-300 hover:text-white hover:bg-white/5">
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+                            <span>شهد مالك</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quick Links & Admin Dashboard Toggle -->
+                <div class="order-2 lg:order-3 flex items-center gap-2 sm:gap-3">
+                    <nav id="public-nav-links" class="hidden xl:flex items-center gap-5 text-sm font-semibold text-slate-300 ml-2">
+                        <a href="#hero-section" class="hover:text-white transition">الرئيسية</a>
+                        <a href="#services-section" class="hover:text-white transition">الخدمات والمهارات</a>
+                        <a href="#portfolio-section" class="hover:text-white transition">معرض الأعمال</a>
+                        <a href="#contact-section" class="hover:text-white transition">تواصل الآن</a>
+                    </nav>
+
+                    <button onclick="toggleDashboard()" id="dashboard-toggle-btn" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold border border-white/15 bg-slate-900 hover:border-purple-400 text-white flex items-center gap-2 transition shadow-sm">
+                        <i class="fa-solid fa-sliders text-amber-400"></i>
+                        <span id="dashboard-btn-text">لوحة التحكم</span>
+                        <span id="unread-messages-badge" class="px-1.5 py-0.5 text-[10px] rounded-full bg-rose-500 text-white font-extrabold">2</span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- ========================================== -->
+    <!-- MAIN PUBLIC PORTFOLIO VIEW (UNIFIED LAYOUT)-->
+    <!-- ========================================== -->
+    <main id="portfolio-view" class="relative z-10 flex-grow">
+
+        <!-- 1. HERO SECTION (Same layout structure for all 3, dynamic content & colors) -->
+        <section id="hero-section" class="pt-10 pb-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                
+                <!-- Right Column: Bio, Badges, CTAs -->
+                <div class="lg:col-span-7 space-y-6 text-right">
+                    <div class="inline-flex flex-wrap items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs sm:text-sm font-semibold">
+                        <span class="w-2.5 h-2.5 rounded-full theme-gradient-bg animate-ping"></span>
+                        <span id="hero-badge-text" class="text-slate-200">وكالة إنتاج إعلامي وحلول رقمية متكاملة</span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight">
+                        <span id="hero-greeting" class="block text-slate-100 mb-2">وكالة أنجزني (Engezny)</span>
+                        <span id="hero-role" class="theme-gradient-text block">من الفكرة والإنتاج بالـ AI إلى البرمجة وتصدر نتائج البحث</span>
+                    </h1>
+
+                    <p id="hero-bio" class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl font-tajawal">
+                        تأسست وكالة أنجزني على يد خريجتي إعلام الجامعة الكندية (شهد الخطيب وشهد مالك) لتكون وجهة شاملة للشركات والبراندات الطموحة. نجمع بين صناعة المحتوى الإعلاني والـ UGC والفويس أوفر وتقنيات الـ AI، وبين بناء المواقع والتطبيقات وتصدر محركات البحث (SEO).
+                    </p>
+
+                    <!-- Dynamic Specialty Tags -->
+                    <div id="hero-tags" class="flex flex-wrap gap-2 pt-1"></div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex flex-wrap items-center gap-4 pt-3">
+                        <a href="#portfolio-section" class="px-7 py-3.5 rounded-2xl theme-gradient-bg text-white font-bold text-sm sm:text-base shadow-lg theme-glow hover:opacity-95 transition flex items-center gap-2">
+                            <i class="fa-solid fa-play"></i>
+                            <span>استكشف معرض الأعمال</span>
+                        </a>
+                        <a href="#contact-section" class="px-6 py-3.5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/15 text-white font-bold text-sm sm:text-base transition flex items-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-emerald-400 text-lg"></i>
+                            <span>اطلب خدمة / مشروع</span>
+                        </a>
+                    </div>
+
+                    <!-- Unified 4-Stat Bar -->
+                    <div id="hero-stats" class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-white/10"></div>
+                </div>
+
+                <!-- Left Column: Unified Interactive Identity Card -->
+                <div class="lg:col-span-5">
+                    <div class="relative mx-auto max-w-md">
+                        <!-- Decorative Glow Ring -->
+                        <div class="absolute -inset-2 rounded-[2.5rem] theme-gradient-bg opacity-25 blur-2xl"></div>
+                        
+                        <div class="glass-card relative rounded-[2rem] p-6 sm:p-8 border border-white/15 overflow-hidden">
+                            <!-- Top Status Bar inside Profile Card -->
+                            <div class="flex items-center justify-between mb-6">
+                                <span id="card-university-tag" class="px-3 py-1 rounded-full text-xs font-bold bg-white/10 text-slate-200 border border-white/10">
+                                    <i class="fa-solid fa-graduation-cap ml-1 text-amber-400"></i>
+                                    خريجات إعلام CIC
+                                </span>
+                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                                    متاح للمشاريع
+                                </span>
+                            </div>
+
+                            <!-- Avatar / Visual Representation -->
+                            <div id="hero-visual-box" class="mb-6"></div>
+
+                            <!-- Core Strengths Comparison Matrix inside Card -->
+                            <div id="hero-capabilities-matrix" class="space-y-2.5 bg-slate-950/60 p-4 rounded-2xl border border-white/5"></div>
+
+                            <!-- Switcher Shortcut inside Card -->
+                            <div id="hero-partner-shortcut" class="mt-5 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-slate-400"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 2. CO-FOUNDERS & BRAND SYNERGY BAR (Connects the 3 Profiles seamlessly) -->
+        <section class="py-6 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="glass-card rounded-3xl p-6 sm:p-8 border border-white/10">
+                <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+                    <div class="space-y-1">
+                        <span class="text-xs font-bold uppercase tracking-wider theme-gradient-text">منظومة العمل المتكاملة (3 في 1)</span>
+                        <h2 class="text-xl sm:text-2xl font-extrabold text-white">تصفح البورتفوليو الفردي للمؤسِّسات أو البورتفوليو الموحد لوكالة أنجزني</h2>
+                        <p class="text-xs sm:text-sm text-slate-400">جميع البورتفوليوهات مصممة بنفس الهيكل الاحترافي مع تخصيص المهارات الدقيقة لكل شخصية:</p>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full lg:w-auto">
+                        <!-- Card 1: Shahd El-Khatib -->
+                        <button onclick="switchProfile('khatib')" id="synergy-card-khatib" class="text-right p-3.5 rounded-2xl bg-slate-900/90 hover:bg-slate-800 border border-white/10 transition flex items-center gap-3 group">
+                            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-amber-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg shrink-0">
+                                <i class="fa-solid fa-microphone-lines"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-sm text-white group-hover:text-amber-400 transition">شهد الخطيب</div>
+                                <div class="text-[11px] text-slate-400">AI • مونتاج • فويس أوفر • تصوير</div>
+                            </div>
+                        </button>
+
+                        <!-- Card 2: Shahd Malek -->
+                        <button onclick="switchProfile('malek')" id="synergy-card-malek" class="text-right p-3.5 rounded-2xl bg-slate-900/90 hover:bg-slate-800 border border-white/10 transition flex items-center gap-3 group">
+                            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-pink-500 to-teal-500 flex items-center justify-center text-white font-bold text-lg shrink-0">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-sm text-white group-hover:text-pink-400 transition">شهد مالك</div>
+                                <div class="text-[11px] text-slate-400">UGC • موديل إعلاني • AI • مونتاج</div>
+                            </div>
+                        </button>
+
+                        <!-- Card 3: Engezny Brand -->
+                        <button onclick="switchProfile('engezny')" id="synergy-card-engezny" class="text-right p-3.5 rounded-2xl bg-slate-900/90 hover:bg-slate-800 border border-white/10 transition flex items-center gap-3 group">
+                            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-violet-600 to-cyan-500 flex items-center justify-center text-white font-bold text-lg shrink-0">
+                                <i class="fa-solid fa-layer-group"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-sm text-white group-hover:text-cyan-400 transition">براند أنجزني</div>
+                                <div class="text-[11px] text-slate-400">شغلهم معاً + مواقع وتطبيقات وSEO</div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. SERVICES & SPECIALIZED SKILLS SECTION -->
+        <section id="services-section" class="py-14 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+                <div>
+                    <span class="text-xs sm:text-sm font-bold theme-gradient-text uppercase tracking-wider">التخصصات الدقيقة</span>
+                    <h2 id="services-heading" class="text-2xl sm:text-4xl font-black text-white mt-1">الخدمات والمهارات الاحترافية</h2>
+                </div>
+                <p id="services-subheading" class="text-sm text-slate-400 max-w-md font-tajawal">
+                    نقدم حلولاً متكاملة تجمع بين الدراسة الأكاديمية في إعلام الجامعة الكندية وأحدث تقنيات العصر.
+                </p>
+            </div>
+
+            <!-- Dynamic Services Grid -->
+            <div id="services-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </section>
+
+        <!-- 4. INTERACTIVE VOICE OVER STUDIO (Auto-shown for Shahd El-Khatib & Engezny, hidden for Shahd Malek) -->
+        <section id="voiceover-studio-section" class="py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="glass-card rounded-3xl p-6 sm:p-10 border border-amber-500/30 relative overflow-hidden">
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-8">
+                    <div class="space-y-2">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs font-bold">
+                            <i class="fa-solid fa-microphone-lines"></i>
+                            <span>استوديو التعليق الصوتي الحصري - بصوت شهد الخطيب</span>
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-black text-white">نماذج الفويس أوفر (Voice Over Samples)</h3>
+                        <p class="text-sm text-slate-300 font-tajawal">استمع إلى تنوع طبقات الصوت بين الإعلاني الحماسي، السرد الوثائقي، والرد الآلي للشركات (IVR).</p>
+                    </div>
+                    <div class="flex items-center gap-3 text-xs text-slate-400 bg-slate-900/90 px-4 py-2.5 rounded-2xl border border-white/10">
+                        <i class="fa-solid fa-wave-square text-amber-400 text-base"></i>
+                        <span>اضغط تشغيل للاستماع لمحاكاة المعاينة الصوتية التفاعلية</span>
+                    </div>
+                </div>
+
+                <!-- Audio Tracks List -->
+                <div id="voiceover-tracks-grid" class="grid grid-cols-1 md:grid-cols-3 gap-5"></div>
+            </div>
+        </section>
+
+        <!-- 5. UNIFIED PORTFOLIO SHOWCASE (Smart Mockups: 9:16 Reels, AI Art, Web/App & SEO Charts) -->
+        <section id="portfolio-section" class="py-14 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-8 gap-6">
+                <div>
+                    <span class="text-xs sm:text-sm font-bold theme-gradient-text uppercase tracking-wider">سابقة الأعمال والنماذج الحية</span>
+                    <h2 id="portfolio-heading" class="text-2xl sm:text-4xl font-black text-white mt-1">معرض الأعمال والمشاريع</h2>
+                </div>
+
+                <!-- Dynamic Category Filter Buttons -->
+                <div id="portfolio-filters" class="flex flex-wrap gap-2"></div>
+            </div>
+
+            <!-- Unified Dynamic Portfolio Grid -->
+            <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7"></div>
+        </section>
+
+        <!-- 6. SEO & TECH RESULTS SPOTLIGHT (Specifically highlighted in Engezny Brand Profile) -->
+        <section id="seo-spotlight-section" class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="glass-card rounded-3xl p-6 sm:p-10 border border-cyan-500/30">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-5 space-y-4">
+                        <span class="px-3 py-1 rounded-full bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 text-xs font-bold">
+                            <i class="fa-solid fa-chart-line ml-1"></i>
+                            القسم التقني والتسويقي في وكالة أنجزني
+                        </span>
+                        <h3 class="text-2xl sm:text-3xl font-black text-white">تطوير مواقع، تطبيقات موبايل، وتصدر نتائج البحث (SEO)</h3>
+                        <p class="text-slate-300 text-sm sm:text-base leading-relaxed font-tajawal">
+                            في براند <strong>أنجزني</strong> نكمل دائرة النجاح؛ بعد أن تصنع شهد الخطيب وشهد مالك أقوى محتوى ميديا وإعلانات AI وUGC، يقوم فريقنا التقني ببناء موقعك الإلكتروني أو تطبيق هاتفك وتهيئته لتصدر الصفحة الأولى في جوجل.
+                        </p>
+                        <div class="grid grid-cols-2 gap-3 pt-2">
+                            <div class="p-3.5 rounded-2xl bg-slate-900/80 border border-white/10">
+                                <div class="text-cyan-400 font-black text-2xl">+340%</div>
+                                <div class="text-xs text-slate-400">متوسط نمو الزيارات العضوية (SEO)</div>
+                            </div>
+                            <div class="p-3.5 rounded-2xl bg-slate-900/80 border border-white/10">
+                                <div class="text-purple-400 font-black text-2xl">99.2%</div>
+                                <div class="text-xs text-slate-400">سرعة أداء المواقع وتجربة المستخدم</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Before/After SEO & Web Metric Visualizer -->
+                    <div class="lg:col-span-7 bg-slate-950/80 rounded-2xl p-5 sm:p-6 border border-white/10 space-y-5">
+                        <div class="flex items-center justify-between border-b border-white/10 pb-3">
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-rose-500"></span>
+                                <span class="w-3 h-3 rounded-full bg-amber-500"></span>
+                                <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+                                <span class="text-xs text-slate-400 mr-2 font-mono">google-search-console.engezny.app</span>
+                            </div>
+                            <span class="text-xs font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-lg">النتيجة #1 في جوجل</span>
+                        </div>
+
+                        <!-- Simulated Traffic Bars -->
+                        <div class="space-y-3">
+                            <div>
+                                <div class="flex justify-between text-xs mb-1">
+                                    <span class="text-slate-400">قبل العمل مع أنجزني (الزيارات الشهرية)</span>
+                                    <span class="text-slate-300 font-bold">1,850 زيارة/شهر</span>
+                                </div>
+                                <div class="w-full h-3 rounded-full bg-slate-800 overflow-hidden">
+                                    <div class="h-full bg-slate-500 rounded-full" style="width: 18%"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-xs mb-1">
+                                    <span class="text-cyan-300 font-bold">بعد 90 يوماً من خطة السيو (SEO) وبناء الموقع</span>
+                                    <span class="text-emerald-400 font-black">24,600 زيارة/شهر (+1230%)</span>
+                                </div>
+                                <div class="w-full h-4 rounded-full bg-slate-800 overflow-hidden">
+                                    <div class="h-full theme-gradient-bg rounded-full transition-all duration-1000" style="width: 92%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tech Stack Pills -->
+                        <div class="pt-2 flex flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-xl bg-white/5 text-xs text-slate-300 border border-white/10"><i class="fa-solid fa-code text-cyan-400 ml-1"></i> UI/UX & Full-Stack Web</span>
+                            <span class="px-3 py-1 rounded-xl bg-white/5 text-xs text-slate-300 border border-white/10"><i class="fa-solid fa-mobile-screen text-purple-400 ml-1"></i> iOS & Android Apps</span>
+                            <span class="px-3 py-1 rounded-xl bg-white/5 text-xs text-slate-300 border border-white/10"><i class="fa-brands fa-google text-emerald-400 ml-1"></i> Technical & On-Page SEO</span>
+                            <span class="px-3 py-1 rounded-xl bg-white/5 text-xs text-slate-300 border border-white/10"><i class="fa-solid fa-bolt text-amber-400 ml-1"></i> Core Web Vitals</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. CONTACT & HIRE SECTION (Connected live to Admin Dashboard Inbox) -->
+        <section id="contact-section" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="glass-card rounded-3xl p-6 sm:p-12 border border-white/15 relative overflow-hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                    
+                    <div class="lg:col-span-5 space-y-5">
+                        <span class="px-3.5 py-1.5 rounded-full text-xs font-bold theme-gradient-bg text-white inline-block">
+                            تواصل مباشر وسريع
+                        </span>
+                        <h2 id="contact-heading" class="text-2xl sm:text-4xl font-black text-white">ابدأ مشروعك القادم معنا</h2>
+                        <p class="text-slate-300 text-sm sm:text-base font-tajawal leading-relaxed">
+                            أرسل تفاصيل مشروعك وسيتم حفظ رسالتك مباشرة في <strong>لوحة التحكم</strong> الخاصة بالمنصة، كما يمكنك التواصل الفوري عبر واتساب.
+                        </p>
+
+                        <div class="space-y-3 pt-2">
+                            <div class="flex items-center gap-3.5 p-3.5 rounded-2xl bg-slate-900/80 border border-white/10">
+                                <div class="w-10 h-10 rounded-xl theme-gradient-bg flex items-center justify-center text-white">
+                                    <i class="fa-solid fa-user-check"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs text-slate-400">البورتفوليو النشط حالياً</div>
+                                    <div id="contact-active-recipient" class="font-bold text-white text-sm">وكالة أنجزني (شهد الخطيب & شهد مالك)</div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-3.5 p-3.5 rounded-2xl bg-slate-900/80 border border-white/10">
+                                <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs text-slate-400">رقم التواصل / واتساب</div>
+                                    <div id="contact-whatsapp-display" class="font-bold text-white text-sm" dir="ltr">+20 100 000 0000</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Form -->
+                    <div class="lg:col-span-7">
+                        <form id="client-contact-form" onsubmit="submitContactForm(event)" class="space-y-4 bg-slate-950/60 p-6 sm:p-8 rounded-2xl border border-white/10">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-300 mb-1.5">الاسم الكريم / اسم الشركة *</label>
+                                    <input type="text" id="msg-name" required placeholder="مثال: شركة النور للتسويق" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-white/10 text-white text-sm focus:outline-none focus:border-purple-500">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-300 mb-1.5">رقم الموبايل / واتساب *</label>
+                                    <input type="text" id="msg-phone" required placeholder="010xxxxxxxx" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-white/10 text-white text-sm focus:outline-none focus:border-purple-500">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-300 mb-1.5">توجيه الطلب إلى *</label>
+                                    <select id="msg-target" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-white/10 text-white text-sm focus:outline-none focus:border-purple-500">
+                                        <option value="engezny">وكالة أنجزني (مشروع متكامل)</option>
+                                        <option value="khatib">شهد الخطيب (AI / مونتاج / فويس أوفر / تصوير)</option>
+                                        <option value="malek">شهد مالك (UGC / موديل إعلاني / AI / مونتاج)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-300 mb-1.5">نوع الخدمة المطلوبة *</label>
+                                    <select id="msg-service" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-white/10 text-white text-sm focus:outline-none focus:border-purple-500">
+                                        <option value="إنتاج فيديو AI ومونتاج">إنتاج فيديو AI ومونتاج</option>
+                                        <option value="تصوير وإعلان UGC">تصوير وإعلان UGC</option>
+                                        <option value="تعليق صوتي Voice Over">تعليق صوتي Voice Over</option>
+                                        <option value="إنشاء موقع أو تطبيق موبايل">إنشاء موقع أو تطبيق موبايل</option>
+                                        <option value="تحسين محركات البحث SEO">تحسين محركات البحث SEO</option>
+                                        <option value="باقة شاملة من أنجزني">باقة شاملة من أنجزني</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-slate-300 mb-1.5">تفاصيل المشروع المطلوب *</label>
+                                <textarea id="msg-details" rows="3" required placeholder="اكتب فكرة المشروع أو الإعلان المطلوب..." class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-white/10 text-white text-sm focus:outline-none focus:border-purple-500"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full py-3.5 rounded-xl theme-gradient-bg text-white font-bold text-sm sm:text-base shadow-lg theme-glow hover:opacity-95 transition flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-paper-plane"></i>
+                                <span>إرسال الطلب فوراً إلى لوحة التحكم</span>
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ========================================== -->
+    <!-- INTEGRATED ADMIN DASHBOARD VIEW            -->
+    <!-- ========================================== -->
+    <section id="dashboard-view" class="relative z-10 hidden flex-grow py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+        
+        <!-- Dashboard Header -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-8 border-b border-white/10">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/15 text-amber-300 text-xs font-bold mb-2">
+                    <i class="fa-solid fa-gauge-high"></i>
+                    <span>نظام الإدارة المركزي للمنصة (CMS Dashboard)</span>
+                </div>
+                <h1 class="text-2xl sm:text-3xl font-black text-white">لوحة تحكم: أنجزني & شهد الخطيب & شهد مالك</h1>
+                <p class="text-xs sm:text-sm text-slate-400">كل تعديل أو عمل جديد تضيفه هنا يظهر فوراً في البورتفوليوهات الثلاثة ويُحفظ تلقائياً.</p>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2">
+                <button onclick="exportPortfolioData()" class="px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold text-slate-200 flex items-center gap-1.5 transition">
+                    <i class="fa-solid fa-download text-cyan-400"></i>
+                    <span>تصدير نسخة JSON</span>
+                </button>
+                <button onclick="resetToDefaultData()" class="px-3.5 py-2 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 text-xs font-bold text-rose-300 flex items-center gap-1.5 transition">
+                    <i class="fa-solid fa-rotate-left"></i>
+                    <span>استعادة البيانات الافتراضية</span>
+                </button>
+                <button onclick="toggleDashboard()" class="px-4 py-2 rounded-xl theme-gradient-bg text-xs font-bold text-white flex items-center gap-1.5 shadow-md">
+                    <i class="fa-solid fa-eye"></i>
+                    <span>العودة لمعاينة الموقع</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Quick KPI Overview Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 my-8">
+            <div class="glass-card p-5 rounded-2xl border border-white/10">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs text-slate-400 font-bold">إجمالي الأعمال المنشورة</span>
+                    <i class="fa-solid fa-photo-film text-purple-400 text-lg"></i>
+                </div>
+                <div id="stat-total-projects" class="text-3xl font-black text-white mt-2">0</div>
+                <div class="text-[11px] text-emerald-400 mt-1">موزعة على الثلاثة بورتفوليوهات</div>
+            </div>
+
+            <div class="glass-card p-5 rounded-2xl border border-white/10">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs text-slate-400 font-bold">أعمال شهد الخطيب</span>
+                    <i class="fa-solid fa-microphone-lines text-amber-400 text-lg"></i>
+                </div>
+                <div id="stat-khatib-projects" class="text-3xl font-black text-white mt-2">0</div>
+                <div class="text-[11px] text-slate-400 mt-1">AI • مونتاج • فويس أوفر • تصوير</div>
+            </div>
+
+            <div class="glass-card p-5 rounded-2xl border border-white/10">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs text-slate-400 font-bold">أعمال شهد مالك</span>
+                    <i class="fa-solid fa-mobile-screen text-pink-400 text-lg"></i>
+                </div>
+                <div id="stat-malek-projects" class="text-3xl font-black text-white mt-2">0</div>
+                <div class="text-[11px] text-slate-400 mt-1">UGC • موديل إعلاني • AI • مونتاج</div>
+            </div>
+
+            <div class="glass-card p-5 rounded-2xl border border-white/10">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs text-slate-400 font-bold">رسائل وطلبات العملاء</span>
+                    <i class="fa-solid fa-envelope-open-text text-cyan-400 text-lg"></i>
+                </div>
+                <div id="stat-total-messages" class="text-3xl font-black text-white mt-2">0</div>
+                <div class="text-[11px] text-cyan-400 mt-1">صندوق الوارد المباشر</div>
+            </div>
+        </div>
+
+        <!-- Dashboard Main Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <!-- Right Column (5 cols): Add New Project + Edit Profile Info -->
+            <div class="lg:col-span-5 space-y-8">
+                
+                <!-- Form 1: Add New Portfolio Item -->
+                <div class="glass-card p-6 rounded-3xl border border-white/15">
+                    <h2 class="text-lg font-extrabold text-white mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-circle-plus text-emerald-400"></i>
+                        <span>إضافة عمل جديد للبورتفوليو</span>
+                    </h2>
+                    <form id="add-project-form" onsubmit="handleAddProject(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 mb-1">يظهر في بورتفوليو من؟ *</label>
+                            <select id="proj-owner" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-sm">
+                                <option value="both_and_engezny">مشترك (شهد الخطيب + شهد مالك + أنجزني)</option>
+                                <option value="khatib">شهد الخطيب فقط (+ يظهر في أنجزني)</option>
+                                <option value="malek">شهد مالك فقط (+ يظهر في أنجزني)</option>
+                                <option value="engezny">براند أنجزني فقط (مواقع / تطبيقات / SEO)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 mb-1">عنوان العمل / المشروع *</label>
+                            <input type="text" id="proj-title" required placeholder="مثال: إعلان UGC لبراند عطور فرنسي" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-sm">
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-300 mb-1">التصنيف *</label>
+                                <select id="proj-category" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-sm">
+                                    <option value="ai">فيديوهات وصور AI</option>
+                                    <option value="montage">مونتاج وإنتاج مرئي</option>
+                                    <option value="ugc">إعلانات UGC وموديلينج (شهد مالك)</option>
+                                    <option value="voiceover">فويس أوفر (شهد الخطيب)</option>
+                                    <option value="photo">تصوير ميداني (شهد الخطيب)</option>
+                                    <option value="web_app">مواقع وتطبيقات (أنجزني)</option>
+                                    <option value="seo">نتائج سيو SEO (أنجزني)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-300 mb-1">شكل العرض (Mockup) *</label>
+                                <select id="proj-mockup" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-sm">
+                                    <option value="reel">شاشة موبايل 9:16 (Reels/TikTok)</option>
+                                    <option value="ai_card">لوحة فنية AI + Prompt</option>
+                                    <option value="audio">مشغل صوتي Voice Over</option>
+                                    <option value="browser">شاشة موقع / تطبيق / SEO</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-300 mb-1">شارة النتيجة / التميز</label>
+                                <input type="text" id="proj-metric" placeholder="مثال: +250% تفاعل ومبيعات" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-300 mb-1">رابط صورة أو فيديو (اختياري)</label>
+                                <input type="url" id="proj-image" placeholder="https://..." class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-sm">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 mb-1">وصف العمل أو فكرة الإعلان *</label>
+                            <textarea id="proj-desc" rows="2" required placeholder="اشرح كيف تم تنفيذ المشروع والأدوات المستخدمة..." class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-sm"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-black text-sm transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-plus"></i>
+                            <span>نشر العمل فوراً في البورتفوليو</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Form 2: Live Profile Bio & Info Editor -->
+                <div class="glass-card p-6 rounded-3xl border border-white/15">
+                    <h2 class="text-lg font-extrabold text-white mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-user-pen text-amber-400"></i>
+                        <span>تعديل النبذة التعريفية وبيانات البورتفوليوهات</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 mb-1">اختر البورتفوليو المراد تعديله</label>
+                            <select id="edit-profile-selector" onchange="loadProfileIntoEditor()" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-sm">
+                                <option value="engezny">وكالة أنجزني (Engezny)</option>
+                                <option value="khatib">شهد الخطيب</option>
+                                <option value="malek">شهد مالك</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 mb-1">المسمى الوظيفي الرئيسي (Headline)</label>
+                            <input type="text" id="edit-profile-role" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-sm">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 mb-1">النبذة التعريفية (Bio)</label>
+                            <textarea id="edit-profile-bio" rows="3" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-sm"></textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 mb-1">رقم واتساب للتواصل</label>
+                            <input type="text" id="edit-profile-whatsapp" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-sm" dir="ltr">
+                        </div>
+
+                        <button onclick="saveProfileEdits()" class="w-full py-3 rounded-xl theme-gradient-bg text-white font-bold text-sm transition">
+                            حفظ التعديلات وتحديث العرض الحي
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Left Column (7 cols): Client Messages Inbox & Manage Existing Projects -->
+            <div class="lg:col-span-7 space-y-8">
+                
+                <!-- Client Inquiries Inbox -->
+                <div class="glass-card p-6 rounded-3xl border border-white/15">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-lg font-extrabold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-inbox text-cyan-400"></i>
+                            <span>رسائل وطلبات العملاء الواردة</span>
+                        </h2>
+                        <span class="text-xs text-slate-400">تصل من نموذج التواصل في الموقع</span>
+                    </div>
+                    <div id="dashboard-messages-list" class="space-y-3 max-h-80 overflow-y-auto pl-1"></div>
+                </div>
+
+                <!-- Manage Portfolio Projects Table/List -->
+                <div class="glass-card p-6 rounded-3xl border border-white/15">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                        <h2 class="text-lg font-extrabold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-folder-open text-purple-400"></i>
+                            <span>إدارة الأعمال الحالية في البورتفوليوهات</span>
+                        </h2>
+                        <select id="dashboard-filter-owner" onchange="renderDashboardProjects()" class="px-3 py-1.5 rounded-xl bg-slate-900 border border-white/10 text-xs text-slate-200">
+                            <option value="all">عرض كل الأعمال</option>
+                            <option value="khatib">أعمال شهد الخطيب</option>
+                            <option value="malek">أعمال شهد مالك</option>
+                            <option value="engezny">أعمال براند أنجزني</option>
+                        </select>
+                    </div>
+                    <div id="dashboard-projects-list" class="space-y-3 max-h-[32rem] overflow-y-auto pl-1"></div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="relative z-10 border-t border-white/10 bg-[#05070f] py-8 px-4 sm:px-6 lg:px-8 mt-auto">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+            <div class="flex items-center gap-2">
+                <span class="w-6 h-6 rounded-lg theme-gradient-bg inline-flex items-center justify-center text-white font-bold">E</span>
+                <span>منصة <strong>أنجزني (Engezny)</strong> — تأسست بواسطة <strong>شهد الخطيب</strong> & <strong>شهد مالك</strong> (خريجتا إعلام الجامعة الكندية CIC)</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <button onclick="switchProfile('engezny')" class="hover:text-white transition">براند أنجزني</button>
+                <span>•</span>
+                <button onclick="switchProfile('khatib')" class="hover:text-amber-400 transition">بورتفوليو شهد الخطيب</button>
+                <span>•</span>
+                <button onclick="switchProfile('malek')" class="hover:text-pink-400 transition">بورتفوليو شهد مالك</button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========================================== -->
+    <!-- APPLICATION LOGIC & UNIFIED DATA ENGINE    -->
+    <!-- ========================================== -->
+    <script>
+        const STORAGE_KEY = 'engezny_unified_platform_v1';
+        let currentProfile = 'engezny'; // 'engezny' | 'khatib' | 'malek'
+        let currentCategoryFilter = 'all';
+        let isDashboardOpen = false;
+        let activeAudioId = null;
+        let audioCtx = null;
+        let audioInterval = null;
+
+        // Default Rich Data for the 3 Profiles, Projects, VoiceOver Tracks, and Client Messages
+        const defaultPlatformData = {
+            profiles: {
+                engezny: {
+                    id: 'engezny',
+                    name: 'وكالة أنجزني (Engezny)',
+                    badge: 'وكالة إنتاج إعلامي، ذكاء اصطناعي، وحلول برمجية وتسويقية',
+                    role: 'من صناعة المحتوى والـ AI والـ UGC إلى بناء المواقع والتطبيقات وتصدر السيو',
+                    bio: 'تأسست وكالة "أنجزني" على يد خريجتي إعلام الجامعة الكندية (شهد الخطيب وشهد مالك) لتكون شريكك الرقمي الشامل. ندمج الإبداع الإعلامي (تصوير، UGC، فويس أوفر، فيديوهات وصور AI، ومونتاج) مع القوة التقنية في تطوير المواقع الإلكترونية وتطبيقات الهواتف وتصدر نتائج البحث (SEO).',
+                    whatsapp: '+20 101 234 5678',
+                    universityTag: 'تأسست بواسطة خريجتي إعلام CIC',
+                    tags: ['إنتاج ميديا متكامل', 'فيديوهات وصور AI', 'إعلانات UGC', 'تعليق صوتي Voice Over', 'تصميم مواقع وتطبيقات', 'تصدر نتائج البحث SEO'],
+                    stats: [
+                        { value: '+140', label: 'مشروع إعلاني وتقني' },
+                        { value: '+340%', label: 'نمو مبيعات وزيارات SEO' },
+                        { value: '2', label: 'مؤسِّسات (إعلام CIC)' },
+                        { value: '100%', label: 'تكامل ميديا وبرمجة' }
+                    ],
+                    capabilities: [
+                        { label: 'فيديوهات وصور AI ومونتاج احترافي', active: true, note: 'شهد الخطيب + شهد مالك' },
+                        { label: 'تصوير ميداني وفويس أوفر احترافي', active: true, note: 'بقيادة شهد الخطيب' },
+                        { label: 'إعلانات UGC وموديلينج أمام الكاميرا', active: true, note: 'بقيادة شهد مالك' },
+                        { label: 'تطوير المواقع، التطبيقات، وتصدر الـ SEO', active: true, note: 'القسم التقني - أنجزني' }
+                    ],
+                    services: [
+                        { icon: 'fa-wand-magic-sparkles', title: 'إنتاج فيديوهات وصور AI', desc: 'توليد مشاهد سينمائية وإعلانات مبتكرة بالذكاء الاصطناعي تزيد من جاذبية علامتك التجارية وتقلل تكاليف الإنتاج الضخمة.' },
+                        { icon: 'fa-mobile-screen-button', title: 'حملات UGC وموديلينج إعلاني', desc: 'ظهور إعلاني طبيعي ومقنع أمام الكاميرا لتجربة المنتجات ومراجعتها بأسلوب يحقق أعلى نسب تحويل ومبيعات على Reels وTikTok.' },
+                        { icon: 'fa-microphone-lines', title: 'التعليق الصوتي والتصوير والمونتاج', desc: 'تصوير ميداني احترافي، مونتاج إيقاعي (Dynamic Editing)، وتعليق صوتي متقن بمختلف اللهجات والنبرات الإعلانية.' },
+                        { icon: 'fa-laptop-code', title: 'تصميم وتطوير المواقع الإلكترونية', desc: 'بناء مواقع شركات ومتاجر إلكترونية سريعة ومتجاوبة بالكامل مع الهواتف، مصممة لتحويل الزوار إلى عملاء.' },
+                        { icon: 'fa-cubes', title: 'برمجة تطبيقات الهواتف (iOS & Android)', desc: 'تصميم وتطوير تطبيقات موبايل عصرية بواجهات مستخدم سلسة (UI/UX) تخدم مشاريع التجارة الإلكترونية والخدمات.' },
+                        { icon: 'fa-magnifying-glass-chart', title: 'تهيئة وتصدر محركات البحث (SEO)', desc: 'خطة سيو تقنية ومحتوى متكاملة لرفع ترتيب موقعك إلى الصفحة الأولى في جوجل ومضاعفة الزيارات المجانية المستهدفة.' }
+                    ]
+                },
+                khatib: {
+                    id: 'khatib',
+                    name: 'شهد الخطيب (Shahd El-Khatib)',
+                    badge: 'خريجة كلية الإعلام - الجامعة الكندية (CIC)',
+                    role: 'صانعة محتوى مرئي ومسموع | AI Artist & Voice Over & Videographer',
+                    bio: 'خريجة إعلام الجامعة الكندية (CIC). أجمع بين الدراسة الأكاديمية الإعلامية وأحدث أدوات الذكاء الاصطناعي لصناعة محتوى متكامل من الصفر؛ بدايةً من التصوير الفوتوغرافي والفيديو، وتوليد المشاهد والصور بالـ AI، مروراً بالمونتاج السينمائي، وصولاً إلى التعليق الصوتي (Voice Over) الذي يمنح الإعلان روحه المميزة.',
+                    whatsapp: '+20 102 222 3333',
+                    universityTag: 'خريجة إعلام الجامعة الكندية CIC',
+                    tags: ['فيديوهات وصور AI', 'تعليق صوتي Voice Over', 'تصوير فيديو وفوتوغرافي', 'مونتاج احترافي', 'إنتاج ميديا شامل', 'شريكة مؤسسة في أنجزني'],
+                    stats: [
+                        { value: '+85', label: 'عمل مونتاج وفيديو AI' },
+                        { value: '+50', label: 'تسجيل صوتي Voice Over' },
+                        { value: '+40', label: 'جلسة تصوير ميداني' },
+                        { value: 'CIC', label: 'بكالوريوس إعلام' }
+                    ],
+                    capabilities: [
+                        { label: 'توليد فيديوهات وصور بالذكاء الاصطناعي (AI)', active: true, note: 'احترافي' },
+                        { label: 'مونتاج الفيديو والمؤثرات البصرية والصوتية', active: true, note: 'احترافي' },
+                        { label: 'التعليق الصوتي (Voice Over) بجميع النبرات', active: true, note: 'ميزة حصرية' },
+                        { label: 'التصوير الفوتوغرافي وتصوير الفيديو خلف الكاميرا', active: true, note: 'ميزة حصرية' }
+                    ],
+                    services: [
+                        { icon: 'fa-robot', title: 'صناعة فيديوهات وصور AI', desc: 'تحويل الأفكار والـ Scripts إلى مشاهد بصرية وصور إعلانية فائقة الجودة باستخدام أحدث نماذج الذكاء الاصطناعي.' },
+                        { icon: 'fa-microphone-lines', title: 'التعليق الصوتي الاحترافي (Voice Over)', desc: 'تسجيل صوتي نقي للإعلانات التجارية، الفيديوهات الوثائقية، الموشن جرافيك، وأنظمة الرد الآلي IVR.' },
+                        { icon: 'fa-camera-retro', title: 'التصوير الفوتوغرافي والفيديو (Videography)', desc: 'تصوير المنتجات والتغطيات الإعلامية والإعلانات الميدانية بزوايا إخراجية وإضاءة مدروسة أكاديمياً.' },
+                        { icon: 'fa-film', title: 'المونتاج الإبداعي ودمج المؤثرات', desc: 'مونتاج احترافي للفيديوهات الإعلانية والـ Reels مع تصحيح الألوان وهندسة الصوت والمؤثرات الحركية.' }
+                    ]
+                },
+                malek: {
+                    id: 'malek',
+                    name: 'شهد مالك (Shahd Malek)',
+                    badge: 'خريجة كلية الإعلام - الجامعة الكندية (CIC)',
+                    role: 'صانعة محتوى UGC وموديل إعلاني | AI Visual Artist & Video Editor',
+                    bio: 'خريجة إعلام الجامعة الكندية (CIC). متخصصة في بناء الثقة بين البراندات والجمهور من خلال الظهور الإعلاني الجذاب أمام الكاميرا وصناعة محتوى تفاعلي (UGC) يحقق أعلى المبيعات، بالإضافة إلى احتراف المونتاج وتوليد الفيديوهات والصور بالذكاء الاصطناعي (AI) بأسلوب عصري خلاق.',
+                    whatsapp: '+20 103 333 4444',
+                    universityTag: 'خريجة إعلام الجامعة الكندية CIC',
+                    tags: ['إعلانات UGC تفاعلية', 'موديل وتقديم إعلاني', 'فيديوهات وصور AI', 'مونتاج Reels & TikTok', 'كتابة سكريبت بيعي', 'شريكة مؤسسة في أنجزني'],
+                    stats: [
+                        { value: '+90', label: 'فيديو إعلاني UGC' },
+                        { value: '+70', label: 'تصميم وفيديو AI' },
+                        { value: '4.9/5', label: 'تقييم البراندات والعملاء' },
+                        { value: 'CIC', label: 'بكالوريوس إعلام' }
+                    ],
+                    capabilities: [
+                        { label: 'صناعة محتوى UGC والظهور كموديل إعلاني أمام الكاميرا', active: true, note: 'ميزة حصرية' },
+                        { label: 'توليد فيديوهات وصور بالذكاء الاصطناعي (AI)', active: true, note: 'احترافي' },
+                        { label: 'مونتاج الفيديوهات السريعة (Reels / TikTok)', active: true, note: 'احترافي' },
+                        { label: 'التصوير خلف الكاميرا أو الفويس أوفر المستقل', active: false, note: 'متوفر عبر شريكتها شهد الخطيب في أنجزني' }
+                    ],
+                    services: [
+                        { icon: 'fa-face-smile-wink', title: 'إعلانات UGC والظهور الإعلاني (On-Camera)', desc: 'تصوير وتقديم مراجعات وتجارب منتجات بأسلوب عفوي ومقنع أمام الكاميرا يزيد من ثقة المشتري ويرفع معدل التحويل.' },
+                        { icon: 'fa-wand-magic-sparkles', title: 'إنتاج فيديوهات وصور بالذكاء الاصطناعي (AI)', desc: 'دمج المشاهد المولدة بالـ AI مع الإعلانات الحقيقية لابتكار حملات إعلانية غير تقليدية تخطف الانتباه في أول 3 ثوانٍ.' },
+                        { icon: 'fa-scissors', title: 'مونتاج إعلانات السوشيال ميديا (Reels & TikTok)', desc: 'مونتاج ديناميكي سريع الإيقاع مع إضافة النصوص التفاعلية (Captions) والانتقالات الجذابة التي تضمن بقاء المشاهد.' },
+                        { icon: 'fa-pen-nib', title: 'إعداد الأفكار والـ Hooks الإعلانية', desc: 'كتابة سيناريوهات إعلانات UGC مبنية على سيكولوجية المستهلك وخبرة الدراسة الأكاديمية في كلية الإعلام.' }
+                    ]
+                }
+            },
+            voiceOverTracks: [
+                {
+                    id: 'vo-1',
+                    title: 'إعلان تجاري حماسي - حملة انطلاق براند',
+                    category: 'إعلاني حماسي',
+                    duration: '0:35',
+                    tone: 'نبرة قوية، مشرقة، سريعة الإيقاع تحفز على اتخاذ قرار الشراء',
+                    freqBase: 260
+                },
+                {
+                    id: 'vo-2',
+                    title: 'سرد وثائقي سينمائي - قصة نجاح وحضارة',
+                    category: 'وثائقي هادئ',
+                    duration: '0:48',
+                    tone: 'نبرة دافئة، عميقة، فصحى سليمة تناسب الأفلام الوثائقية والتقارير',
+                    freqBase: 195
+                },
+                {
+                    id: 'vo-3',
+                    title: 'نظام الرد الآلي الهاتفي للشركات (IVR)',
+                    category: 'رد آلي رسمي',
+                    duration: '0:25',
+                    tone: 'نبرة ترحيبية واضحة واحترافية باللغتين العربية والإنجليزية',
+                    freqBase: 310
+                }
+            ],
+            projects: [
+                {
+                    id: 'proj-1',
+                    owner: 'khatib',
+                    title: 'إعلان سينمائي بالذكاء الاصطناعي وفويس أوفر لعطر فاخر',
+                    category: 'ai',
+                    mockup: 'reel',
+                    metric: '+420K مشاهدة',
+                    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80',
+                    desc: 'توليد المشاهد البصرية بالكامل بالـ AI مع مونتاج سينمائي وتعليق صوتي فخم بصوت شهد الخطيب.'
+                },
+                {
+                    id: 'proj-2',
+                    owner: 'malek',
+                    title: 'حملة فيديوهات UGC وموديلينج لمنتجات العناية بالبشرة',
+                    category: 'ugc',
+                    mockup: 'reel',
+                    metric: '+310% زيادة مبيعات',
+                    image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80',
+                    desc: 'ظهور إعلاني أمام الكاميرا لتجربة المنتجات وشرح مميزاتها مع مونتاج Reels سريع الإيقاع بواسطة شهد مالك.'
+                },
+                {
+                    id: 'proj-3',
+                    owner: 'both_and_engezny',
+                    title: 'حملة إعلانية هجينة (AI + UGC + مونتاج مشترك)',
+                    category: 'montage',
+                    mockup: 'reel',
+                    metric: 'أعلى معدل تفاعل 14.8%',
+                    image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80',
+                    desc: 'مشروع مشترك يجمع ظهور شهد مالك الإعلاني مع تصوير وفويس أوفر شهد الخطيب ومؤثرات الـ AI.'
+                },
+                {
+                    id: 'proj-4',
+                    owner: 'khatib',
+                    title: 'جلسة تصوير ميداني وإنتاج فيديو لبراند كافيه ومطعم',
+                    category: 'photo',
+                    mockup: 'reel',
+                    metric: 'تصوير 4K + مونتاج',
+                    image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80',
+                    desc: 'تصوير ميداني للكواليس والأطباق مع إضاءة احترافية ومونتاج ترويجي متكامل بواسطة شهد الخطيب.'
+                },
+                {
+                    id: 'proj-5',
+                    owner: 'malek',
+                    title: 'سلسلة تصميمات وفيديوهات AI لمجموعة أزياء عصرية',
+                    category: 'ai',
+                    mockup: 'ai_card',
+                    metric: 'AI Art & Motion',
+                    image: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80',
+                    desc: 'توليد جلسات تصوير افتراضية وفيديوهات حركة بالذكاء الاصطناعي مع مونتاج إعلاني بواسطة شهد مالك.'
+                },
+                {
+                    id: 'proj-6',
+                    owner: 'engezny',
+                    title: 'تصميم وبرمجة متجر إلكتروني وتطبيق موبايل لبراند أزياء',
+                    category: 'web_app',
+                    mockup: 'browser',
+                    metric: 'سرعة 99% + تطبيق iOS/Android',
+                    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
+                    desc: 'بناء الموقع الإلكتروني والتطبيق المتكامل مع بوابات الدفع ولوحة إدارة المخزون ضمن خدمات وكالة أنجزني.'
+                },
+                {
+                    id: 'proj-7',
+                    owner: 'engezny',
+                    title: 'دراسة حالة SEO: تصدر النتيجة الأولى لشركة عقارات واستشارات',
+                    category: 'seo',
+                    mockup: 'browser',
+                    metric: 'النتيجة #1 في جوجل (+850% زيارات)',
+                    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
+                    desc: 'تهيئة الموقع تقنياً وبناء خطة محتوى وبناء روابط رفعت الزيارات الشهرية من 1,200 إلى أكثر من 18,000 زائر مستهدف.'
+                }
+            ],
+            messages: [
+                {
+                    id: 'msg-101',
+                    name: 'أحمد منصور - مدير تسويق براند كوزمتكس',
+                    phone: '01098765432',
+                    target: 'malek',
+                    service: 'تصوير وإعلان UGC',
+                    details: 'نرغب في التعاقد مع أستاذة شهد مالك لتنفيذ 4 فيديوهات UGC لمنتجات العناية بالبشرة مع مونتاج Reels.',
+                    date: 'منذ ساعتين'
+                },
+                {
+                    id: 'msg-102',
+                    name: 'شركة ديجيتال هب للاستثمار',
+                    phone: '01123456789',
+                    target: 'engezny',
+                    service: 'باقة شاملة من أنجزني',
+                    details: 'محتاجين تصميم موقع إلكتروني وخطة سيو كاملة بالإضافة إلى فيديو إعلاني بالـ AI وفويس أوفر بصوت أستاذة شهد الخطيب.',
+                    date: 'منذ 5 ساعات'
+                }
+            ]
+        };
+
+        let appData = loadAppData();
+
+        function loadAppData() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (raw) {
+                    return JSON.parse(raw);
+                }
+            } catch (e) {
+                console.error('Storage load error:', e);
+            }
+            return JSON.parse(JSON.stringify(defaultPlatformData));
+        }
+
+        function saveAppData() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
+            } catch (e) {
+                console.error('Storage save error:', e);
+            }
+            updateDashboardCounters();
+        }
+
+        // Show custom non-blocking toast message
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            const icon = type === 'success' ? 'fa-circle-check text-emerald-400' : 'fa-circle-info text-cyan-400';
+            toast.className = 'glass-card pointer-events-auto px-5 py-3.5 rounded-2xl border border-white/20 shadow-2xl flex items-center gap-3 animate-fade-up text-sm font-bold text-white';
+            toast.innerHTML = `<i class="fa-solid ${icon} text-lg"></i><span>${message}</span>`;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        // Profile Switcher (Updates theme, Hero, Capabilities, Services, Audio Studio, SEO Spotlight, and Portfolio Grid)
+        function switchProfile(profileKey) {
+            currentProfile = profileKey;
+            currentCategoryFilter = 'all';
+
+            // If user clicks profile tab while in dashboard, return to live portfolio view automatically
+            if (isDashboardOpen) {
+                toggleDashboard(false);
+            }
+
+            // Set theme attribute on body
+            document.body.setAttribute('data-theme', profileKey);
+
+            // Update Top Nav Switcher Buttons
+            ['engezny', 'khatib', 'malek'].forEach(key => {
+                const btn = document.getElementById(`tab-${key}`);
+                if (key === profileKey) {
+                    btn.className = 'profile-tab flex-1 sm:flex-initial px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 theme-gradient-bg text-white shadow-md';
+                } else {
+                    btn.className = 'profile-tab flex-1 sm:flex-initial px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 text-slate-300 hover:text-white hover:bg-white/5';
+                }
+            });
+
+            // Highlight active synergy card
+            ['engezny', 'khatib', 'malek'].forEach(key => {
+                const card = document.getElementById(`synergy-card-${key}`);
+                if (card) {
+                    card.style.borderColor = (key === profileKey) ? 'var(--accent-primary)' : 'rgba(255,255,255,0.1)';
+                }
+            });
+
+            renderActivePortfolio();
+        }
+
+        function renderActivePortfolio() {
+            const profile = appData.profiles[currentProfile];
+
+            // Update Header Logo & Title
+            const navIconMap = {
+                engezny: '<i class="fa-solid fa-bolt"></i>',
+                khatib: '<i class="fa-solid fa-microphone-lines"></i>',
+                malek: '<i class="fa-solid fa-wand-magic-sparkles"></i>'
+            };
+            document.getElementById('nav-logo-icon').innerHTML = navIconMap[currentProfile];
+            document.getElementById('nav-brand-title').textContent = profile.name;
+
+            // Update Hero Texts
+            document.getElementById('hero-badge-text').textContent = profile.badge;
+            document.getElementById('hero-greeting').textContent = profile.name;
+            document.getElementById('hero-role').textContent = profile.role;
+            document.getElementById('hero-bio').textContent = profile.bio;
+            document.getElementById('card-university-tag').innerHTML = `<i class="fa-solid fa-graduation-cap ml-1 text-amber-400"></i> ${profile.universityTag}`;
+
+            // Hero Tags
+            const tagsContainer = document.getElementById('hero-tags');
+            tagsContainer.innerHTML = profile.tags.map(t => `
+                <span class="px-3 py-1 rounded-xl bg-white/5 border border-white/10 text-xs font-bold text-slate-200">${t}</span>
+            `).join('');
+
+            // Hero Stats
+            const statsContainer = document.getElementById('hero-stats');
+            statsContainer.innerHTML = profile.stats.map(s => `
+                <div class="p-3 rounded-2xl bg-white/5 border border-white/5">
+                    <div class="text-xl sm:text-2xl font-black theme-gradient-text">${s.value}</div>
+                    <div class="text-xs text-slate-400 mt-0.5">${s.label}</div>
+                </div>
+            `).join('');
+
+            // Hero Visual Box inside Identity Card
+            const visualBox = document.getElementById('hero-visual-box');
+            if (currentProfile === 'engezny') {
+                visualBox.innerHTML = `
+                    <div class="p-5 rounded-2xl theme-gradient-bg text-white relative overflow-hidden">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <div class="text-xs uppercase font-bold opacity-85">الوكالة الرقمية المشتركة</div>
+                                <div class="text-2xl font-black mt-0.5">ENGEZNY AGENCY</div>
+                                <div class="text-xs opacity-90 mt-1">شهد الخطيب & شهد مالك + فريق البرمجة والـ SEO</div>
+                            </div>
+                            <div class="flex -space-x-3 space-x-reverse">
+                                <div class="w-12 h-12 rounded-2xl bg-slate-950/80 border-2 border-amber-400 flex items-center justify-center font-black text-amber-400" title="شهد الخطيب">ش.خ</div>
+                                <div class="w-12 h-12 rounded-2xl bg-slate-950/80 border-2 border-pink-400 flex items-center justify-center font-black text-pink-400" title="شهد مالك">ش.م</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (currentProfile === 'khatib') {
+                visualBox.innerHTML = `
+                    <div class="p-5 rounded-2xl bg-gradient-to-br from-amber-500/20 to-purple-600/20 border border-amber-500/30 flex items-center gap-4">
+                        <div class="w-16 h-16 rounded-2xl theme-gradient-bg flex items-center justify-center text-white text-2xl font-black shrink-0 shadow-lg">
+                            <i class="fa-solid fa-microphone-lines"></i>
+                        </div>
+                        <div>
+                            <div class="text-lg font-black text-white">شهد الخطيب</div>
+                            <div class="text-xs text-amber-300 font-bold">خريجة إعلام الجامعة الكندية (CIC)</div>
+                            <div class="text-[11px] text-slate-300 mt-1">AI • مونتاج • فويس أوفر • تصوير ميداني</div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                visualBox.innerHTML = `
+                    <div class="p-5 rounded-2xl bg-gradient-to-br from-pink-500/20 to-teal-500/20 border border-pink-500/30 flex items-center gap-4">
+                        <div class="w-16 h-16 rounded-2xl theme-gradient-bg flex items-center justify-center text-white text-2xl font-black shrink-0 shadow-lg">
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+                        </div>
+                        <div>
+                            <div class="text-lg font-black text-white">شهد مالك</div>
+                            <div class="text-xs text-pink-300 font-bold">خريجة إعلام الجامعة الكندية (CIC)</div>
+                            <div class="text-[11px] text-slate-300 mt-1">UGC • موديل إعلاني • فيديوهات وصور AI • مونتاج</div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Capabilities Matrix inside Identity Card (Clearly shows what each person does & doesn't do)
+            const matrixEl = document.getElementById('hero-capabilities-matrix');
+            matrixEl.innerHTML = profile.capabilities.map(cap => `
+                <div class="flex items-center justify-between gap-2 text-xs py-1.5 border-b border-white/5 last:border-0">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid ${cap.active ? 'fa-circle-check text-emerald-400' : 'fa-circle-info text-slate-500'}"></i>
+                        <span class="${cap.active ? 'text-slate-200 font-semibold' : 'text-slate-400'}">${cap.label}</span>
+                    </div>
+                    <span class="px-2 py-0.5 rounded-md text-[10px] font-bold ${cap.active ? 'bg-white/10 text-white' : 'bg-slate-800 text-slate-400'}">${cap.note}</span>
+                </div>
+            `).join('');
+
+            // Shortcut link at bottom of Hero Card
+            const shortcutEl = document.getElementById('hero-partner-shortcut');
+            if (currentProfile === 'engezny') {
+                shortcutEl.innerHTML = `
+                    <span>تصفح بورتفوليو المؤسِّسات الفردي:</span>
+                    <div class="flex gap-2">
+                        <button onclick="switchProfile('khatib')" class="text-amber-400 hover:underline font-bold">شهد الخطيب</button>
+                        <span>|</span>
+                        <button onclick="switchProfile('malek')" class="text-pink-400 hover:underline font-bold">شهد مالك</button>
+                    </div>
+                `;
+            } else if (currentProfile === 'khatib') {
+                shortcutEl.innerHTML = `
+                    <span>شريكة مؤسسة في وكالة <strong>أنجزني</strong></span>
+                    <button onclick="switchProfile('engezny')" class="text-amber-400 hover:underline font-bold">زيارة براند أنجزني ←</button>
+                `;
+            } else {
+                shortcutEl.innerHTML = `
+                    <span>شريكة مؤسسة في وكالة <strong>أنجزني</strong></span>
+                    <button onclick="switchProfile('engezny')" class="text-pink-400 hover:underline font-bold">زيارة براند أنجزني ←</button>
+                `;
+            }
+
+            // Render Services Grid
+            const servicesGrid = document.getElementById('services-grid');
+            servicesGrid.innerHTML = profile.services.map(srv => `
+                <div class="glass-card p-6 rounded-3xl flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl theme-gradient-bg flex items-center justify-center text-white text-xl mb-5 shadow-md">
+                            <i class="fa-solid ${srv.icon}"></i>
+                        </div>
+                        <h3 class="text-lg font-extrabold text-white mb-2">${srv.title}</h3>
+                        <p class="text-sm text-slate-300 leading-relaxed font-tajawal">${srv.desc}</p>
+                    </div>
+                    <div class="mt-5 pt-4 border-t border-white/5 flex items-center justify-between text-xs text-slate-400">
+                        <span>متاح للطلب المباشر</span>
+                        <a href="#contact-section" class="font-bold theme-gradient-text">اطلب الخدمة ←</a>
+                    </div>
+                </div>
+            `).join('');
+
+            // Toggle Voice Over Studio Visibility (Shown for Shahd El-Khatib & Engezny, hidden for Shahd Malek since she doesn't do Voice Over)
+            const voSection = document.getElementById('voiceover-studio-section');
+            if (currentProfile === 'malek') {
+                voSection.classList.add('hidden');
+            } else {
+                voSection.classList.remove('hidden');
+                renderVoiceOverStudio();
+            }
+
+            // Toggle SEO & Tech Spotlight Visibility (Prominent in Engezny)
+            const seoSection = document.getElementById('seo-spotlight-section');
+            if (currentProfile === 'engezny') {
+                seoSection.classList.remove('hidden');
+            } else {
+                seoSection.classList.add('hidden');
+            }
+
+            // Update Contact Recipient & WhatsApp
+            document.getElementById('contact-active-recipient').textContent = profile.name;
+            document.getElementById('contact-whatsapp-display').textContent = profile.whatsapp;
+            document.getElementById('msg-target').value = currentProfile;
+
+            // Render Filters & Portfolio Grid
+            renderPortfolioFilters();
+            renderPortfolioGrid();
+        }
+
+        // Render Interactive Voice Over Audio Player (for Shahd El-Khatib & Engezny)
+        function renderVoiceOverStudio() {
+            const container = document.getElementById('voiceover-tracks-grid');
+            container.innerHTML = appData.voiceOverTracks.map(track => {
+                const isPlaying = activeAudioId === track.id;
+                const barsHtml = Array.from({ length: 18 }, (_, idx) => {
+                    const height = 25 + ((idx * 17) % 70);
+                    const delay = (idx * 0.06).toFixed(2);
+                    return `<div class="wave-bar w-1.5 bg-amber-400/80 rounded-full" style="height:${height}%; animation-delay:${delay}s"></div>`;
+                }).join('');
+
+                return `
+                    <div id="audio-card-${track.id}" class="p-5 rounded-2xl bg-slate-900/90 border ${isPlaying ? 'border-amber-400' : 'border-white/10'} flex flex-col justify-between transition">
+                        <div>
+                            <div class="flex items-center justify-between gap-2 mb-3">
+                                <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-500/20 text-amber-300">${track.category}</span>
+                                <span class="text-xs font-mono text-slate-400">${track.duration}</span>
+                            </div>
+                            <h4 class="font-bold text-white text-sm mb-1">${track.title}</h4>
+                            <p class="text-xs text-slate-400 font-tajawal mb-4">${track.tone}</p>
+                        </div>
+
+                        <div>
+                            <!-- Waveform Visualizer -->
+                            <div class="h-10 flex items-end justify-between gap-1 px-2 mb-4 ${isPlaying ? 'playing' : ''}">
+                                ${barsHtml}
+                            </div>
+
+                            <button onclick="toggleVoiceOverPlay('${track.id}', ${track.freqBase})" class="w-full py-2.5 rounded-xl ${isPlaying ? 'bg-amber-500 text-slate-950' : 'bg-white/10 hover:bg-white/15 text-white'} font-bold text-xs flex items-center justify-center gap-2 transition">
+                                <i class="fa-solid ${isPlaying ? 'fa-pause' : 'fa-play'}"></i>
+                                <span>${isPlaying ? 'إيقاف المعاينة الصوتية' : 'تشغيل نموذج الصوت'}</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Synthesize gentle ambient voice-over cadence feedback using Web Audio API
+        function toggleVoiceOverPlay(trackId, freqBase) {
+            if (activeAudioId === trackId) {
+                stopAudioPlayback();
+                renderVoiceOverStudio();
+                return;
+            }
+
+            stopAudioPlayback();
+            activeAudioId = trackId;
+            renderVoiceOverStudio();
+
+            try {
+                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                audioCtx = new AudioContextClass();
+
+                const playPulse = () => {
+                    if (!audioCtx || activeAudioId !== trackId) return;
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(freqBase + (Math.random() * 45 - 20), audioCtx.currentTime);
+                    gain.gain.setValueAtTime(0.03, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.35);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.35);
+                };
+
+                playPulse();
+                audioInterval = setInterval(playPulse, 450);
+
+                // Auto stop after 6 seconds
+                setTimeout(() => {
+                    if (activeAudioId === trackId) {
+                        stopAudioPlayback();
+                        renderVoiceOverStudio();
+                    }
+                }, 6000);
+            } catch (e) {
+                console.log('Audio preview fallback active');
+            }
+        }
+
+        function stopAudioPlayback() {
+            activeAudioId = null;
+            if (audioInterval) {
+                clearInterval(audioInterval);
+                audioInterval = null;
+            }
+            if (audioCtx) {
+                audioCtx.close().catch(() => {});
+                audioCtx = null;
+            }
+        }
+
+        // Helper: Determine if a project belongs to the currently active profile
+        function doesProjectBelongToProfile(proj, profileKey) {
+            if (profileKey === 'engezny') {
+                // Engezny shows all shared work + both founders' media work + Engezny's tech/SEO work
+                return true;
+            }
+            if (profileKey === 'khatib') {
+                return proj.owner === 'khatib' || proj.owner === 'both_and_engezny';
+            }
+            if (profileKey === 'malek') {
+                // Ensure Shahd Malek never displays photography or voiceover even if misconfigured
+                if (proj.category === 'voiceover' || proj.category === 'photo') return false;
+                return proj.owner === 'malek' || proj.owner === 'both_and_engezny';
+            }
+            return true;
+        }
+
+        function renderPortfolioFilters() {
+            const filtersByProfile = {
+                engezny: [
+                    { key: 'all', label: 'كل أعمال أنجزني' },
+                    { key: 'ai', label: 'فيديوهات وصور AI' },
+                    { key: 'ugc', label: 'إعلانات UGC' },
+                    { key: 'montage', label: 'مونتاج وإنتاج' },
+                    { key: 'photo', label: 'تصوير وفويس أوفر' },
+                    { key: 'web_app', label: 'مواقع وتطبيقات' },
+                    { key: 'seo', label: 'نتائج السيو SEO' }
+                ],
+                khatib: [
+                    { key: 'all', label: 'كل أعمال شهد الخطيب' },
+                    { key: 'ai', label: 'فيديوهات وصور AI' },
+                    { key: 'montage', label: 'مونتاج احترافي' },
+                    { key: 'photo', label: 'تصوير ميداني' },
+                    { key: 'voiceover', label: 'فويس أوفر' }
+                ],
+                malek: [
+                    { key: 'all', label: 'كل أعمال شهد مالك' },
+                    { key: 'ugc', label: 'UGC وموديل إعلاني' },
+                    { key: 'ai', label: 'فيديوهات وصور AI' },
+                    { key: 'montage', label: 'مونتاج Reels' }
+                ]
+            };
+
+            const filters = filtersByProfile[currentProfile] || filtersByProfile.engezny;
+            const container = document.getElementById('portfolio-filters');
+            container.innerHTML = filters.map(f => {
+                const active = currentCategoryFilter === f.key;
+                return `
+                    <button onclick="setCategoryFilter('${f.key}')" class="px-4 py-2 rounded-xl text-xs font-bold transition ${active ? 'theme-gradient-bg text-white shadow-md' : 'bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10'}">
+                        ${f.label}
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function setCategoryFilter(catKey) {
+            currentCategoryFilter = catKey;
+            renderPortfolioFilters();
+            renderPortfolioGrid();
+        }
+
+        function getCategoryBadgeLabel(cat) {
+            const map = {
+                ai: 'ذكاء اصطناعي AI',
+                montage: 'مونتاج وإنتاج',
+                ugc: 'إعلان UGC وموديلينج',
+                voiceover: 'تعليق صوتي Voice Over',
+                photo: 'تصوير ميداني',
+                web_app: 'تطوير مواقع وتطبيقات',
+                seo: 'تصدر محركات البحث SEO'
+            };
+            return map[cat] || 'مشروع إبداعي';
+        }
+
+        function getOwnerLabel(owner) {
+            const map = {
+                khatib: 'شهد الخطيب',
+                malek: 'شهد مالك',
+                engezny: 'فريق أنجزني التقني',
+                both_and_engezny: 'عمل مشترك (الخطيب & مالك)'
+            };
+            return map[owner] || 'وكالة أنجزني';
+        }
+
+        function renderPortfolioGrid() {
+            const grid = document.getElementById('portfolio-grid');
+            const filtered = appData.projects.filter(proj => {
+                if (!doesProjectBelongToProfile(proj, currentProfile)) return false;
+                if (currentCategoryFilter === 'all') return true;
+                if (currentCategoryFilter === 'photo' && currentProfile === 'engezny') {
+                    return proj.category === 'photo' || proj.category === 'voiceover';
+                }
+                return proj.category === currentCategoryFilter;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full glass-card p-12 rounded-3xl text-center space-y-3">
+                        <i class="fa-solid fa-folder-open text-3xl text-slate-500"></i>
+                        <div class="text-lg font-bold text-white">لا توجد أعمال في هذا التصنيف حالياً</div>
+                        <p class="text-xs text-slate-400">يمكنك إضافة أعمال جديدة فوراً من خلال زر "لوحة التحكم" في الأعلى.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(proj => {
+                const badgeLabel = getCategoryBadgeLabel(proj.category);
+                const ownerLabel = getOwnerLabel(proj.owner);
+
+                // Render specialized frame based on mockup style
+                if (proj.mockup === 'reel') {
+                    return `
+                        <div class="glass-card rounded-3xl p-5 flex flex-col justify-between animate-fade-up">
+                            <div>
+                                <!-- Top Meta -->
+                                <div class="flex items-center justify-between gap-2 mb-4">
+                                    <span class="px-3 py-1 rounded-full text-[11px] font-bold bg-white/10 text-white">${badgeLabel}</span>
+                                    <span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">${proj.metric || 'مشروع مميز'}</span>
+                                </div>
+
+                                <!-- 9:16 Smartphone Frame Preview -->
+                                <div onclick="openPreviewModal('${proj.id}')" class="phone-mockup w-48 mx-auto mb-5 cursor-pointer group">
+                                    <div class="phone-notch"></div>
+                                    <img src="${proj.image}" alt="${proj.title}" onerror="this.src='https://placehold.co/400x700/1e293b/ffffff?text=9:16+Reel'" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-85">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent flex flex-col justify-end p-3.5">
+                                        <div class="w-11 h-11 rounded-full theme-gradient-bg text-white flex items-center justify-center mx-auto mb-auto mt-auto shadow-lg group-hover:scale-110 transition">
+                                            <i class="fa-solid fa-play"></i>
+                                        </div>
+                                        <div class="text-[11px] font-bold text-white line-clamp-2">${proj.title}</div>
+                                        <div class="text-[10px] text-slate-300 mt-0.5">${ownerLabel}</div>
+                                    </div>
+                                </div>
+
+                                <h3 class="font-extrabold text-base text-white mb-1.5">${proj.title}</h3>
+                                <p class="text-xs text-slate-300 font-tajawal leading-relaxed">${proj.desc}</p>
+                            </div>
+
+                            <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs">
+                                <span class="text-slate-400"><i class="fa-solid fa-user-tag ml-1"></i>${ownerLabel}</span>
+                                <button onclick="openPreviewModal('${proj.id}')" class="font-bold theme-gradient-text">معاينة الفيديو ←</button>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                // Browser / SEO / AI Art Frame
+                return `
+                    <div class="glass-card rounded-3xl overflow-hidden flex flex-col justify-between animate-fade-up">
+                        <div>
+                            <!-- Browser Top Bar Mockup -->
+                            <div class="bg-slate-900/90 px-4 py-2.5 border-b border-white/10 flex items-center justify-between">
+                                <div class="flex items-center gap-1.5">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                                </div>
+                                <span class="text-[11px] font-bold text-slate-300">${badgeLabel}</span>
+                            </div>
+
+                            <div onclick="openPreviewModal('${proj.id}')" class="relative h-52 overflow-hidden cursor-pointer group">
+                                <img src="${proj.image}" alt="${proj.title}" onerror="this.src='https://placehold.co/600x400/1e293b/ffffff?text=Project+Preview'" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                <div class="absolute top-3 left-3 px-3 py-1 rounded-full text-[11px] font-bold bg-slate-950/85 text-emerald-400 border border-emerald-500/30">
+                                    ${proj.metric || 'نتائج موثقة'}
+                                </div>
+                            </div>
+
+                            <div class="p-5">
+                                <h3 class="font-extrabold text-base text-white mb-2">${proj.title}</h3>
+                                <p class="text-xs text-slate-300 font-tajawal leading-relaxed">${proj.desc}</p>
+                            </div>
+                        </div>
+
+                        <div class="px-5 pb-5 pt-3 border-t border-white/10 flex items-center justify-between text-xs">
+                            <span class="text-slate-400"><i class="fa-solid fa-user-tag ml-1"></i>${ownerLabel}</span>
+                            <button onclick="openPreviewModal('${proj.id}')" class="font-bold theme-gradient-text">تفاصيل المشروع ←</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Open Interactive Modal Preview for any Portfolio Card
+        function openPreviewModal(projId) {
+            const proj = appData.projects.find(p => p.id === projId);
+            if (!proj) return;
+
+            document.getElementById('modal-badge').textContent = getCategoryBadgeLabel(proj.category);
+            document.getElementById('modal-title').textContent = proj.title;
+
+            const modalBody = document.getElementById('modal-body');
+            modalBody.innerHTML = `
+                <div class="grid grid-cols-1 sm:grid-cols-12 gap-6 items-center">
+                    <div class="sm:col-span-5">
+                        <img src="${proj.image}" alt="${proj.title}" onerror="this.src='https://placehold.co/500x600/1e293b/ffffff?text=Preview'" class="w-full h-64 object-cover rounded-2xl border border-white/15">
+                    </div>
+                    <div class="sm:col-span-7 space-y-4 text-right">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-300 text-xs font-bold">
+                            <i class="fa-solid fa-chart-simple"></i>
+                            <span>الأثر والنتيجة: ${proj.metric || 'مشروع احترافي'}</span>
+                        </div>
+                        <p class="text-slate-200 text-sm leading-relaxed font-tajawal">${proj.desc}</p>
+                        <div class="p-3.5 rounded-2xl bg-slate-900/90 border border-white/10 text-xs space-y-1">
+                            <div class="text-slate-400">تنفيذ وإشراف: <strong class="text-white">${getOwnerLabel(proj.owner)}</strong></div>
+                            <div class="text-slate-400">التصنيف: <strong class="text-white">${getCategoryBadgeLabel(proj.category)}</strong></div>
+                        </div>
+                        <div class="pt-2 flex gap-3">
+                            <a href="#contact-section" onclick="closePreviewModal()" class="px-5 py-2.5 rounded-xl theme-gradient-bg text-white font-bold text-xs">اطلب مشروعاً مشابهاً</a>
+                            <button onclick="closePreviewModal()" class="px-4 py-2.5 rounded-xl bg-white/10 text-slate-200 font-bold text-xs">إغلاق</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            const modal = document.getElementById('preview-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closePreviewModal() {
+            const modal = document.getElementById('preview-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Submit Contact Form -> Save to Dashboard Client Messages
+        function submitContactForm(event) {
+            event.preventDefault();
+            const name = document.getElementById('msg-name').value.trim();
+            const phone = document.getElementById('msg-phone').value.trim();
+            const target = document.getElementById('msg-target').value;
+            const service = document.getElementById('msg-service').value;
+            const details = document.getElementById('msg-details').value.trim();
+
+            if (!name || !phone || !details) return;
+
+            const newMsg = {
+                id: 'msg-' + Date.now(),
+                name,
+                phone,
+                target,
+                service,
+                details,
+                date: 'الآن'
+            };
+
+            appData.messages.unshift(newMsg);
+            saveAppData();
+
+            document.getElementById('client-contact-form').reset();
+            showToast('تم إرسال طلبك بنجاح! يمكنك رؤيته الآن داخل لوحة التحكم.');
+        }
+
+        // ==========================================
+        // ADMIN DASHBOARD CONTROLLERS
+        // ==========================================
+        function toggleDashboard(forceState) {
+            isDashboardOpen = typeof forceState === 'boolean' ? forceState : !isDashboardOpen;
+            const portfolioView = document.getElementById('portfolio-view');
+            const dashboardView = document.getElementById('dashboard-view');
+            const publicLinks = document.getElementById('public-nav-links');
+            const btnText = document.getElementById('dashboard-btn-text');
+
+            if (isDashboardOpen) {
+                portfolioView.classList.add('hidden');
+                dashboardView.classList.remove('hidden');
+                publicLinks.classList.add('hidden');
+                btnText.textContent = 'العودة للموقع';
+                updateDashboardCounters();
+                loadProfileIntoEditor();
+                renderDashboardMessages();
+                renderDashboardProjects();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                dashboardView.classList.add('hidden');
+                portfolioView.classList.remove('hidden');
+                publicLinks.classList.remove('hidden');
+                btnText.textContent = 'لوحة التحكم';
+                renderActivePortfolio();
+            }
+        }
+
+        function updateDashboardCounters() {
+            const total = appData.projects.length;
+            const khatibCount = appData.projects.filter(p => doesProjectBelongToProfile(p, 'khatib')).length;
+            const malekCount = appData.projects.filter(p => doesProjectBelongToProfile(p, 'malek')).length;
+            const msgCount = appData.messages.length;
+
+            document.getElementById('stat-total-projects').textContent = total;
+            document.getElementById('stat-khatib-projects').textContent = khatibCount;
+            document.getElementById('stat-malek-projects').textContent = malekCount;
+            document.getElementById('stat-total-messages').textContent = msgCount;
+            document.getElementById('unread-messages-badge').textContent = msgCount;
+        }
+
+        // Handle Adding a New Project from Dashboard
+        function handleAddProject(event) {
+            event.preventDefault();
+            const owner = document.getElementById('proj-owner').value;
+            const title = document.getElementById('proj-title').value.trim();
+            const category = document.getElementById('proj-category').value;
+            const mockup = document.getElementById('proj-mockup').value;
+            const metric = document.getElementById('proj-metric').value.trim() || 'مشروع جديد';
+            const imageInput = document.getElementById('proj-image').value.trim();
+            const desc = document.getElementById('proj-desc').value.trim();
+
+            const fallbackImages = {
+                ai: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80',
+                ugc: 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=800&q=80',
+                montage: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=800&q=80',
+                voiceover: 'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=800&q=80',
+                photo: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=800&q=80',
+                web_app: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=800&q=80',
+                seo: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&w=800&q=80'
+            };
+
+            const newProj = {
+                id: 'proj-' + Date.now(),
+                owner,
+                title,
+                category,
+                mockup,
+                metric,
+                image: imageInput || fallbackImages[category] || fallbackImages.ai,
+                desc
+            };
+
+            appData.projects.unshift(newProj);
+            saveAppData();
+            renderDashboardProjects();
+            document.getElementById('add-project-form').reset();
+            showToast('تم نشر العمل الجديد بنجاح في البورتفوليو!');
+        }
+
+        function deleteProject(projId) {
+            appData.projects = appData.projects.filter(p => p.id !== projId);
+            saveAppData();
+            renderDashboardProjects();
+            showToast('تم حذف العمل من البورتفوليو.');
+        }
+
+        function renderDashboardProjects() {
+            const filterOwner = document.getElementById('dashboard-filter-owner').value;
+            const listEl = document.getElementById('dashboard-projects-list');
+
+            const items = appData.projects.filter(p => {
+                if (filterOwner === 'all') return true;
+                return doesProjectBelongToProfile(p, filterOwner);
+            });
+
+            if (items.length === 0) {
+                listEl.innerHTML = `<div class="text-xs text-slate-400 py-6 text-center">لا توجد أعمال مطابقة للفلتر.</div>`;
+                return;
+            }
+
+            listEl.innerHTML = items.map(p => `
+                <div class="p-3.5 rounded-2xl bg-slate-900/90 border border-white/10 flex items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <img src="${p.image}" alt="${p.title}" onerror="this.src='https://placehold.co/100x100/1e293b/ffffff?text=Work'" class="w-12 h-12 rounded-xl object-cover shrink-0">
+                        <div>
+                            <div class="font-bold text-sm text-white">${p.title}</div>
+                            <div class="flex flex-wrap items-center gap-2 text-[11px] text-slate-400 mt-0.5">
+                                <span class="text-purple-300 font-semibold">${getOwnerLabel(p.owner)}</span>
+                                <span>•</span>
+                                <span>${getCategoryBadgeLabel(p.category)}</span>
+                                <span>•</span>
+                                <span class="text-emerald-400">${p.metric}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="deleteProject('${p.id}')" class="w-8 h-8 rounded-xl bg-rose-500/15 hover:bg-rose-500/30 text-rose-400 flex items-center justify-center shrink-0 transition" title="حذف العمل">
+                        <i class="fa-solid fa-trash-can text-xs"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // Profile Editor in Dashboard
+        function loadProfileIntoEditor() {
+            const key = document.getElementById('edit-profile-selector').value;
+            const prof = appData.profiles[key];
+            if (!prof) return;
+            document.getElementById('edit-profile-role').value = prof.role;
+            document.getElementById('edit-profile-bio').value = prof.bio;
+            document.getElementById('edit-profile-whatsapp').value = prof.whatsapp;
+        }
+
+        function saveProfileEdits() {
+            const key = document.getElementById('edit-profile-selector').value;
+            const prof = appData.profiles[key];
+            if (!prof) return;
+
+            prof.role = document.getElementById('edit-profile-role').value.trim();
+            prof.bio = document.getElementById('edit-profile-bio').value.trim();
+            prof.whatsapp = document.getElementById('edit-profile-whatsapp').value.trim();
+
+            saveAppData();
+            showToast(`تم تحديث بيانات "${prof.name}" بنجاح!`);
+        }
+
+        // Render Client Inquiries inside Dashboard
+        function renderDashboardMessages() {
+            const container = document.getElementById('dashboard-messages-list');
+            if (appData.messages.length === 0) {
+                container.innerHTML = `<div class="text-xs text-slate-400 py-6 text-center">لا توجد رسائل عملاء حالياً.</div>`;
+                return;
+            }
+
+            const targetNames = {
+                engezny: 'براند أنجزني',
+                khatib: 'شهد الخطيب',
+                malek: 'شهد مالك'
+            };
+
+            container.innerHTML = appData.messages.map(m => `
+                <div class="p-4 rounded-2xl bg-slate-900/90 border border-white/10 space-y-2">
+                    <div class="flex items-center justify-between gap-2">
+                        <div class="font-bold text-sm text-white">${m.name}</div>
+                        <div class="flex items-center gap-2">
+                            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-cyan-500/20 text-cyan-300">موجه إلى: ${targetNames[m.target] || 'أنجزني'}</span>
+                            <button onclick="deleteMessage('${m.id}')" class="text-slate-500 hover:text-rose-400 text-xs"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-300 font-tajawal">${m.details}</p>
+                    <div class="flex items-center justify-between text-[11px] text-slate-400 pt-1 border-t border-white/5">
+                        <span>الخدمة: <strong class="text-slate-200">${m.service}</strong> | هاتف: <strong class="text-emerald-400" dir="ltr">${m.phone}</strong></span>
+                        <span>${m.date}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function deleteMessage(msgId) {
+            appData.messages = appData.messages.filter(m => m.id !== msgId);
+            saveAppData();
+            renderDashboardMessages();
+            showToast('تم حذف الرسالة.');
+        }
+
+        // Export JSON Backup
+        function exportPortfolioData() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appData, null, 2));
+            const dlAnchor = document.createElement('a');
+            dlAnchor.setAttribute("href", dataStr);
+            dlAnchor.setAttribute("download", "engezny_portfolios_backup.json");
+            document.body.appendChild(dlAnchor);
+            dlAnchor.click();
+            dlAnchor.remove();
+            showToast('تم تحميل ملف النسخة الاحتياطية JSON بنجاح.');
+        }
+
+        // Reset Demo Data
+        function resetToDefaultData() {
+            appData = JSON.parse(JSON.stringify(defaultPlatformData));
+            saveAppData();
+            loadProfileIntoEditor();
+            renderDashboardMessages();
+            renderDashboardProjects();
+            renderActivePortfolio();
+            showToast('تمت استعادة البيانات الافتراضية للمنصة.');
+        }
+
+        // Initialize Platform on Load
+        window.addEventListener('DOMContentLoaded', () => {
+            updateDashboardCounters();
+            switchProfile('engezny');
+        });
+    </script>
+</body>
+</html>
